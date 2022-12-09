@@ -32,7 +32,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item {{ Route::is('home') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('home') }}">Operaciones {!! Route::is('home') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        </li>
+                        <li class="nav-item {{ Request::segment(1) == 'cuentas' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('cuentas.index') }}">Cuentas Bancarias {!! Request::segment(1) == 'cuentas' ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        </li>
+                        <li class="nav-item {{ Request::segment(1) == 'tiposCuentas' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('tiposCuentas.index') }}">Tipos de Cuentas {!! Request::segment(1) == 'tiposCuentas' ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        </li>
+                        <li class="nav-item {{ Request::segment(1) == 'tipostransacciones' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('tipostransacciones.index') }}">Tipos de Transacciones {!! Request::segment(1) == 'tipostransacciones' ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        </li>
+                        <li class="nav-item {{ Request::segment(1) == 'formaspagos' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('formaspagos.index') }}">Formas de Pago {!! Request::segment(1) == 'formaspagos' ? '<span class="sr-only">(current)</span>' : '' !!}</a>
+                        </li>                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->
