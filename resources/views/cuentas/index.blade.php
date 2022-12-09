@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card text-white bg-dark">
-                <div class="card-header">Tipos de Transacciones</div>
+                <div class="card-header">Cuentas Bancarias</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-12 margin-tb">
                                 <div class="pull-right">
-                                    <a class="btn btn-success" href="{{ route('tipostransacciones.create') }}">Agregar</a>
+                                    <a class="btn btn-success" href="{{ route('cuentas.create') }}">Agregar</a>
                                 </div>
                             </div>
                         </div>
@@ -25,20 +25,22 @@
                     
                         <table class="table table-dark table-striped table-hover mt-2">
                             <tr>
-                                <th>Nombre</th>
-                                <th>Afectación</th>
+                                <th>Tipo de Cuenta</th>
+                                <th>No Cuenta</th>
+                                <th>Alias</th>
                                 <th width="280px">Acciones</th>
                             </tr>
-                            @foreach ($tipostransacciones as $tt)
+                            @foreach ($cuentas as $cuenta)
                             <tr>
-                                <td>{{ $tt->nombre }}</td>
-                                <td>{{ $tt->signo == 1 ? 'Entrada' : 'Salida' }}</td>
+                                <td>{{ $cuenta->Tiposcuentas->nombre }}</td>
+                                <td>{{ $cuenta->cuenta }}</td>
+                                <td>{{ $cuenta->alias }}</td>
                                 <td>
-                                    <form action="{{ route('tipostransacciones.destroy',$tt->id) }}" method="POST">
+                                    <form action="{{ route('cuentas.destroy',$cuenta->id) }}" method="POST">
                     
-                                        <a class="btn btn-info" href="{{ route('tipostransacciones.show',$tt->id) }}">Ver</a>
+                                        <a class="btn btn-info" href="{{ route('cuentas.show',$cuenta->id) }}">Ver</a>
                         
-                                        <a class="btn btn-primary" href="{{ route('tipostransacciones.edit',$tt->id) }}">Editar</a>
+                                        <a class="btn btn-primary" href="{{ route('cuentas.edit',$cuenta->id) }}">Editar</a>
                     
                                         @csrf
                                         @method('DELETE')
@@ -50,7 +52,7 @@
                             @endforeach
                         </table>
                     
-                        {!! $tipostransacciones->links() !!}
+                        {!! $cuentas->links() !!}
                     </div>
                 </div>
             </div>

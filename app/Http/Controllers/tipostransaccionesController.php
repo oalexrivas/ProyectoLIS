@@ -68,9 +68,9 @@ class tipostransaccionesController extends Controller
      * @param  \App\Tipostransacciones  $tipostransacciones
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipostransacciones $tipostransaccion)
+    public function show(Tipostransacciones $tipostransaccione)
     {
-        return view('tipostransacciones.show',compact('tipostransaccion'));
+        return view('tipostransacciones.show',compact('tipostransaccione'));
     }
 
     /**
@@ -79,9 +79,9 @@ class tipostransaccionesController extends Controller
      * @param  \App\Tipostransacciones  $tipostransacciones
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipostransacciones $tipostransaccion)
+    public function edit(Tipostransacciones $tipostransaccione)
     {
-        return view('tipostransacciones.edit',compact('tipostransaccion'));
+        return view('tipostransacciones.edit',compact('tipostransaccione'));
     }
 
     /**
@@ -91,13 +91,13 @@ class tipostransaccionesController extends Controller
      * @param  \App\Tipostransacciones  $tipostransacciones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tipostransacciones $tipostransaccion)
+    public function update(Request $request, Tipostransacciones $tipostransaccione)
     {
         $request->validate([
             'nombre' => 'required',
         ]);
   
-        $tipostransaccion->update($request->all());
+        $tipostransaccione->update($request->all());
   
         return redirect()->route('tipostransacciones.index')
             ->with('success','Forma de pago actualizado satisfactoriamente');
@@ -109,9 +109,9 @@ class tipostransaccionesController extends Controller
      * @param  \App\Tipostransacciones  $tipostransacciones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipostransacciones $tipostransaccion)
+    public function destroy(Tipostransacciones $tipostransaccione)
     {
-        $tipostransaccion->delete();
+        $tipostransaccione->delete();
   
         return redirect()->route('tipostransacciones.index')
             ->with('success','Tipo de Cuenta borrado satisfactoriamente');

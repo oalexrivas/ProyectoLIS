@@ -27,6 +27,12 @@
                                     <h6>Tipos Transacciones</h6>
                                 </a>
                             </div>
+                            <div class="col-lg-4 col-md-6 col-12 py-1">
+                                <a class="mx-auto btn btn-dark stretched-link shadow" href="{{ route('cuentas.index') }}">
+                                    <img src="img/tiposcuentas.png" class="img-size-trans" alt="Cuentas" title="Cuentas">
+                                    <h6>Cuentas Bancarias</h6>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

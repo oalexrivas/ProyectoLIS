@@ -15,13 +15,15 @@ class Transacciones extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('cuenta_id');
-            $table->bigInteger('formaspago_id')->nulleable();
+            $table->integer('cuenta_id');
+            $table->integer('tipostransaccion_id');
+            $table->integer('formaspago_id')->nullable();
             $table->string('monto', 100);            
             $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('cuenta_id')->references('id')->on('cuentas');
             $table->foreign('formaspago_id')->references('id')->on('formaspagos');
+            $table->foreign('tipostransaccion_id')->references('id')->on('tipostransacciones');
             $table->timestamps();
         });
     }

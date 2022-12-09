@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Tipostransacciones extends Migration
+class TiposTransacciones extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class Tipostransacciones extends Migration
         Schema::create('tipostransacciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 100);
-            $table->string('signo', 1);
+            $table->integer('signo');
             $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

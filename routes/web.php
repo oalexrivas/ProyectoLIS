@@ -17,3 +17,4 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('tiposCuentas', 'tiposCuentasController');
 Route::resource('formaspagos', 'formaspagosController');
 Route::resource('tipostransacciones', 'tipostransaccionesController');
+Route::resource('cuentas', 'cuentasController');

@@ -5,12 +5,12 @@
 <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card text-white bg-dark">
-                <div class="card-header">Crear Tipo de Transacción</div>
+                <div class="card-header">Crear Cuenta Bancaria</div>
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-lg-12 margin-tb">
                                 <div class="pull-right">
-                                    <a class="btn btn-primary" href="{{ route('tipostransacciones.index') }}">Regresar</a>
+                                    <a class="btn btn-primary" href="{{ route('cuentas.index') }}">Regresar</a>
                                 </div>
                             </div>
                         </div>
@@ -26,22 +26,29 @@
                             </div>
                         @endif
                         
-                        <form action="{{ route('tipostransacciones.store') }}" method="POST">
+                        <form action="{{ route('cuentas.store') }}" method="POST">
                             @csrf  
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Nombre:</strong>
-                                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                                        <strong>Tipo de Cuenta:</strong>
+                                        <select type="select" class="form-control" name="tiposcuenta_id">
+                                            @foreach ($tiposcuentas as $tipo)
+                                                <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
+                                            @endforeach
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Afectación:</strong>
-                                        <select type="select" class="form-control" name="signo">                                        
-                                            <option value="1">Entrada</option>
-                                            <option value="-1">Salida</option>
-                                    </select>
+                                        <strong>No Cuenta:</strong>
+                                        <input type="text" name="cuenta" class="form-control" placeholder="Número de cuenta">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Alias:</strong>
+                                        <input type="text" name="alias" class="form-control" placeholder="Alias">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-right">
