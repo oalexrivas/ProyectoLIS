@@ -19,6 +19,7 @@ class Cuentas extends Migration
             $table->string('cuenta', 100);
             $table->bigInteger('user_id');
             $table->integer('tiposcuenta_id');
+            $table->boolean('activo');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('tiposcuenta_id')->references('id')->on('tiposcuentas');
             $table->timestamps();

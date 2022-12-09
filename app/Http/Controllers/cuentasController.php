@@ -55,10 +55,11 @@ class cuentasController extends Controller
   
         $data = $request->all();
         $data['user_id'] = $request->user()->id;
+        $data['activo'] = 1;
         cuentas::create($data);
    
         return redirect()->route('cuentas.index')
-            ->with('success','Forma de pago creado satisfactoriamente.');
+            ->with('success','Cuenta bancaria creada satisfactoriamente.');
     }
 
     /**
@@ -108,7 +109,7 @@ class cuentasController extends Controller
         $cuenta->update($request->all());
   
         return redirect()->route('cuentas.index')
-            ->with('success','Forma de pago actualizado satisfactoriamente');
+            ->with('success','Cuenta bancaria actualizada satisfactoriamente');
     }
 
     /**
@@ -122,6 +123,6 @@ class cuentasController extends Controller
         $cuenta->delete();
   
         return redirect()->route('cuentas.index')
-            ->with('success','Tipo de Cuenta borrado satisfactoriamente');
+            ->with('success','Cuenta bancaria borrado satisfactoriamente');
     }
 }

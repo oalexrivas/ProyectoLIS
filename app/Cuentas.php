@@ -11,6 +11,7 @@ class Cuentas extends Model
         'alias',
         'tiposcuenta_id',
         'user_id',
+        'activo',
     ];
 
     public function tiposcuentas()

@@ -25,7 +25,7 @@ class transaccionesController extends Controller
     {
         $cuentas = Cuentas::all();
         $formaspagos = [];
-        $tipostransacciones = Tipostransacciones::where('signo',1)->get();
+        $tipostransacciones = Tipostransacciones::where('signo',-1)->get();
         $tipo = 'R';
 
         return view('transacciones.registrar', compact('cuentas', 'formaspagos', 'tipostransacciones','tipo'));
@@ -34,6 +34,16 @@ class transaccionesController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $tipostransacciones = Tipostransacciones::where('id',$data['tipostransaccion_id'])->first();
+        $data['monto'] = $data['monto'] * $tipostransacciones->signo;
+
+        if($data['tipo'] == 'R')
+        {
+            $saldo = Transacciones::where('tipo', '<>','S')->sum('monto');
+            $request->merge(['saldo' => $saldo + $data['monto']]);
+        }
+
         if ($data['tipo'] == 'D')
         {
             $request->validate([
@@ -54,13 +64,15 @@ class transaccionesController extends Controller
         else {
             $request->validate([
                 'cuenta_id' => 'required',
-                'monto' => 'required',
+                'monto' => 'required|min:0',
                 'tipostransaccion_id' => 'required',
+                'saldo' => 'numeric|min:0',
             ],
             [
                 'cuenta_id.required' => 'El número de cuenta es requerido.',
                 'monto.required' => 'El monto es requerido.',
                 'tipostransaccion_id.required' => 'El tipo transacción es requerido.',
+                'saldo.min' => "El monto no puede ser mayor al saldo de la cuenta (Saldo: $saldo).",
             ]);
 
             $mensaje='Retiro realizado con éxito.';
@@ -72,6 +84,6 @@ class transaccionesController extends Controller
 
 
         return redirect()->route('home')
-            ->with('success',$mensaje);;
+            ->with('success',$mensaje);
     }
 }

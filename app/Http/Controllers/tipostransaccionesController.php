@@ -59,7 +59,7 @@ class tipostransaccionesController extends Controller
         Tipostransacciones::create($data);
    
         return redirect()->route('tipostransacciones.index')
-            ->with('success','Forma de pago creado satisfactoriamente.');
+            ->with('success','Tipo de transacción creado satisfactoriamente.');
     }
 
     /**
@@ -100,7 +100,7 @@ class tipostransaccionesController extends Controller
         $tipostransaccione->update($request->all());
   
         return redirect()->route('tipostransacciones.index')
-            ->with('success','Forma de pago actualizado satisfactoriamente');
+            ->with('success','Tipo de transacción actualizado satisfactoriamente');
     }
 
     /**
@@ -114,6 +114,6 @@ class tipostransaccionesController extends Controller
         $tipostransaccione->delete();
   
         return redirect()->route('tipostransacciones.index')
-            ->with('success','Tipo de Cuenta borrado satisfactoriamente');
+            ->with('success','Tipo de transacción borrado satisfactoriamente');
     }
 }
