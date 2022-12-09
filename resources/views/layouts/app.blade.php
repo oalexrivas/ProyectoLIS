@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/utils.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,6 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                    @guest
+                    @else
                         <li class="nav-item {{ Route::is('home') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('home') }}">Operaciones {!! Route::is('home') ? '<span class="sr-only">(current)</span>' : '' !!}</a>
                         </li>
@@ -46,7 +49,8 @@
                         </li>
                         <li class="nav-item {{ Request::segment(1) == 'formaspagos' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('formaspagos.index') }}">Formas de Pago {!! Request::segment(1) == 'formaspagos' ? '<span class="sr-only">(current)</span>' : '' !!}</a>
-                        </li>                    
+                        </li>
+                    @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

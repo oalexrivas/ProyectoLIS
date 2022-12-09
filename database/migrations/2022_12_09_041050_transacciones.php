@@ -15,6 +15,7 @@ class Transacciones extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tipo', 1);
             $table->integer('cuenta_id');
             $table->integer('tipostransaccion_id');
             $table->integer('formaspago_id')->nullable();
