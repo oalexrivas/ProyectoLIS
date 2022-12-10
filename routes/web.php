@@ -24,8 +24,9 @@ Route::resource('transacciones', 'transaccionesController')->only([
 
 Route::get('/Depositar', 'transaccionesController@depositos')->name('RegistrarDeposito');
 Route::get('/Retirar', 'transaccionesController@retiros')->name('RegistrarRetiro');
+Route::get('/ObtenerSaldo', 'transaccionesController@versaldo')->name('saldo');
+Route::post('/ConsultarSaldo', 'transaccionesController@consultarsaldo')->name('consultarsaldo');
 
 //Route::post('/Guardado', 'transaccionesController@guardartransaccion')->name('GuardarTransaccion');
 Route::get('/VerEntradas', 'RegistrosController@verEntradas')->name('VerEntradas');
 Route::get('/VerSalidas', 'RegistrosController@verSalidas')->name('VerSalidas');
-Route::get('/ReporteMovimientos', 'RegistrosController@reporte')->name('reporte');

@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class transaccionesController extends Controller
 {
+    /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function depositos()
     {
         $cuentas = Cuentas::all();
@@ -29,6 +39,39 @@ class transaccionesController extends Controller
         $tipo = 'R';
 
         return view('transacciones.registrar', compact('cuentas', 'formaspagos', 'tipostransacciones','tipo'));
+    }
+
+    public function versaldo()
+    {
+        $cuentas = Cuentas::all();
+        $saldo = 0;
+        
+        return view('transacciones.saldo', compact('cuentas', 'saldo'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function consultarsaldo(Request $request)
+    {
+        $cuentas = Cuentas::all();
+        $saldo = Transacciones::where('user_id', Auth::user()->id)
+            ->where('cuenta_id', $request->get('cuenta_id'))
+            ->where('tipo', '<>','S')
+            ->sum('monto');
+        
+        $transaccion = new Transacciones;
+        $transaccion->tipo = 'S';
+        $transaccion->cuenta_id = $request->get('cuenta_id');
+        $transaccion->monto = $saldo;
+        $transaccion->user_id = Auth::user()->id;
+        $transaccion->save();
+
+        return view('transacciones.saldo', compact('cuentas', 'saldo'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function index(Request $request)
+    {
+
     }
 
     public function store(Request $request)

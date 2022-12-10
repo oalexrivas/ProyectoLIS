@@ -17,7 +17,7 @@ class Transacciones extends Migration
             $table->increments('id');
             $table->string('tipo', 1);
             $table->integer('cuenta_id');
-            $table->integer('tipostransaccion_id');
+            $table->integer('tipostransaccion_id')->nullable();
             $table->integer('formaspago_id')->nullable();
             $table->string('monto', 100);            
             $table->bigInteger('user_id');

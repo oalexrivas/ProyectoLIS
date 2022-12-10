@@ -29,6 +29,12 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12 py-1">
+                                <a class="mx-auto btn btn-dark stretched-link shadow" href="{{ route('saldo') }}">
+                                    <img src="img/Saldo.png" class="img-size-trans" alt="Saldo" title="Saldo">
+                                    <h6>Obtener Saldos</h6>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12 py-1">
                                 <a class="mx-auto btn btn-dark stretched-link shadow" href="{{ route('VerEntradas') }}">
                                     <img src="img/VerDepositos.png" class="img-size-trans" alt="Saldo" title="Saldo">
                                     <h6>Ver Entradas</h6>
@@ -40,12 +46,7 @@
                                     <h6>Ver Salidas</h6>
                                 </a>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-12 py-1">
-                                <a class="mx-auto btn btn-dark stretched-link shadow" href="{{ route('reporte') }}">
-                                    <img src="img/Saldo.png" class="img-size-trans" alt="Saldo" title="Saldo">
-                                    <h6>Mostrar Balance</h6>
-                                </a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
