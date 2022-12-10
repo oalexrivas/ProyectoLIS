@@ -18,15 +18,12 @@ Route::resource('tiposCuentas', 'tiposCuentasController');
 Route::resource('formaspagos', 'formaspagosController');
 Route::resource('tipostransacciones', 'tipostransaccionesController');
 Route::resource('cuentas', 'cuentasController');
-Route::resource('transacciones', 'transaccionesController')->only([
-    'store'
-]);
+Route::resource('transacciones', 'transaccionesController');
 
 Route::get('/Depositar', 'transaccionesController@depositos')->name('RegistrarDeposito');
 Route::get('/Retirar', 'transaccionesController@retiros')->name('RegistrarRetiro');
 Route::get('/ObtenerSaldo', 'transaccionesController@versaldo')->name('saldo');
-Route::post('/ConsultarSaldo', 'transaccionesController@consultarsaldo')->name('consultarsaldo');
+Route::post('/ObtenerSaldo', 'transaccionesController@consultarsaldo')->name('consultarsaldo');
 
-//Route::post('/Guardado', 'transaccionesController@guardartransaccion')->name('GuardarTransaccion');
-Route::get('/VerEntradas', 'RegistrosController@verEntradas')->name('VerEntradas');
-Route::get('/VerSalidas', 'RegistrosController@verSalidas')->name('VerSalidas');
+Route::get('/ObtenerTransacciones', 'transaccionesController@vertransacciones')->name('vertrans');
+Route::post('/ObtenerTransacciones', 'transaccionesController@consultartransacciones')->name('vertrans');

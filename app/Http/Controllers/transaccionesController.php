@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Transacciones;
 use App\Cuentas;
 use App\Formaspagos;
@@ -65,13 +66,35 @@ class transaccionesController extends Controller
         $transaccion->user_id = Auth::user()->id;
         $transaccion->save();
 
-        return view('transacciones.saldo', compact('cuentas', 'saldo'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('transacciones.saldo', compact('cuentas', 'saldo'));
     }
 
-    public function index(Request $request)
+    public function vertransacciones()
     {
+        $cuentas = Cuentas::all();
+        $transacciones = Transacciones::where('user_id', Auth::user()->id)
+            ->where('cuenta_id', -1)
+            ->latest()->paginate(25);
+        $inicio = date("Y-m-01");
+        $fin = date("Y-m-d");
+        return view('transacciones.index', compact('cuentas', 'transacciones', 'inicio', 'fin'))
+            ->with('i', (request()->input('page', 1) - 1) * 25);
+    }
 
+    public function consultartransacciones(Request $request)
+    {
+        $cuentas = Cuentas::all();
+        $transacciones = Transacciones::where('user_id', Auth::user()->id)
+            ->where('cuenta_id', $request->get('cuenta_id'))
+            ->whereBetween('created_at', [Carbon::parse($request->get('inicio'))->startOfDay(), Carbon::parse($request->get('fin'))->endOfDay()])
+            ->orderBy('created_at', 'ASC')
+            ->latest()->paginate(25);
+        
+        $inicio = $request->get('inicio');
+        $fin = $request->get('fin');
+
+        return view('transacciones.index', compact('cuentas', 'transacciones', 'inicio', 'fin'))
+            ->with('i', (request()->input('page', 1) - 1) * 25);
     }
 
     public function store(Request $request)
